@@ -40,4 +40,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        UIManager.Instance.ShowPauseMenu(true);
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        UIManager.Instance.ShowPauseMenu(false);
+    }
 }

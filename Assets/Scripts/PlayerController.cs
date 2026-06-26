@@ -29,8 +29,11 @@ public class PlayerController : MonoBehaviour
         float input = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(input * moveSpeed, rb.linearVelocity.y);
 
-        if (input > 0) transform.localScale = new Vector3(0.5f, 1f, 1f);
-        if (input < 0) transform.localScale = new Vector3(-0.5f, 1f, 1f);
+
+        Vector3 scale = transform.localScale;
+        if (input > 0) scale.x = Mathf.Abs(scale.x);
+        if (input < 0) scale.x = -Mathf.Abs(scale.x);
+        transform.localScale = scale;
 
         if (input != 0)
             AudioManager.Instance?.PlayWalk();

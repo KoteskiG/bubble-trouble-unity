@@ -35,8 +35,8 @@ public class BubbleController : MonoBehaviour
 
         if (col.gameObject.CompareTag("Wall"))
         {
-            float currentDir = rb.linearVelocity.x > 0 ? -1f : 1f;
-            rb.linearVelocity = new Vector2(currentDir * horizontalSpeed, rb.linearVelocity.y);
+            float bounceDir = col.contacts[0].normal.x > 0 ? 1f : -1f;
+            rb.linearVelocity = new Vector2(bounceDir * horizontalSpeed, rb.linearVelocity.y);
             AudioManager.Instance?.PlayBubbleBounce();
         }
     }
